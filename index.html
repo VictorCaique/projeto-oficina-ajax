@@ -8,10 +8,75 @@
     <meta name="color-cheme" content="light dark">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="js/funcoes.js"></script>
+    <script>
+         function filtrar(){
+             console.log("CLICK")
+    const op = document.getElementById('optionlist').value;
+    const busca = document.getElementById('demo').value;
+    console.log(op)
+    console.log(busca)
+    $("#TableData") 
+    $(() => {
+        $.getJSON("js/automoveis.json", data => {
+        //   if(op == "Carro"){
+            
+                for (var i=0; i < data['automoveis'].length; i++){
+                    console.log()
+                    if(String(data['automoveis'][i]["CARRO"]).trim() == busca){
+                        console.log(data['automoveis'][i])
+                    $("#TableData").append("<tr>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["MARCA"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CARRO"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CAMBER_DIANTEIRO_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CAMBER_DIANTEIRO_MAX"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CASTER_DIANTEIRO_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CASTER_DIANTEIRO_MAX"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CONVERGENCIA_DIANTEIRA_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CONVERGENCIA_DIANTEIRA_MAX"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CAMBER_TRASEIRA_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CAMBER_TRASEIRA_MAX"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CONVERGENCIA_TRASEIRA_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CONVERGENCIA_TRASEIRA_MAX"] + "</td>");
+                    $("#TableData").append("<tr>");
+                }
+               }
+         // }
+          if(op == "Marca"){
+              for (var i=0; i < data['automoveis'].length; i++){
+                  if(toString(data['automoveis'][i]["MARCA"]).match(busca)){
+                  $("#TableData").append("<tr>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["MARCA"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CARRO"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CAMBER_DIANTEIRO_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CAMBER_DIANTEIRO_MAX"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CASTER_DIANTEIRO_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CASTER_DIANTEIRO_MAX"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CONVERGENCIA_DIANTEIRA_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CONVERGENCIA_DIANTEIRA_MAX"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CAMBER_TRASEIRA_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CAMBER_TRASEIRA_MAX"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CONVERGENCIA_TRASEIRA_MIN"] + "</td>");
+                    $("#TableData").append("<td scope='col'>" + data['automoveis'][i]["CONVERGENCIA_TRASEIRA_MAX"] + "</td>");
+                    $("#TableData").append("<tr>");
+                }
+               }
+          }
+        })
+    })
+}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Oficina</title>
 </head>
 <body>
+    <form action="#">
+        <input type="text" id="demo" name="busca"/>
+    <select id='optionlist' >
+        <option>Carro</option>
+        <option>Marca</option>
+    </select>
+    <button type="submit" onclick="filtrar()">Filtrar</button>
+    </form>
     <table border="1">
         <thead>
             <tr>
